@@ -1,38 +1,9 @@
 #include <climits>
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
 
-class SpreadSheetRow {
-  public:
-    std::string const &operator[](std::size_t index) const {
-        return m_data[index];
-    }
-    std::size_t size() const { return m_data.size(); }
-    std::vector<std::string>::const_iterator begin() const {
-        return m_data.begin();
-    }
-    std::vector<std::string>::const_iterator end() const {
-        return m_data.end();
-    }
-    void read(std::istream &str) {
-        std::string line, cell;
-        std::getline(str, line);
-        std::stringstream lineStream(line);
-        while (std::getline(lineStream, cell, '\t')) {
-            m_data.push_back(cell);
-        }
-    }
-
-  private:
-    std::vector<std::string> m_data;
-};
-
-std::istream &operator>>(std::istream &str, SpreadSheetRow &data) {
-    data.read(str);
-    return str;
-}
+#include "SpreadSheet.h"
 
 int main(int /* argc */, char * /* argv */ []) {
     std::vector<SpreadSheetRow> rows;

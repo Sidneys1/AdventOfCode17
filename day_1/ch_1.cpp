@@ -8,7 +8,7 @@ int main(int /* argc */, char * /* argv */ []) {
     std::cout << "Input is: " << std::quoted(input) << std::endl;
     auto len = input.size();
     input += input[0];
-    int i = 0;
+    size_t i = 0;
     int sum = 0;
     std::cout << "0";
     for (auto it = input.begin(); i < len; i++, it++) {
