@@ -24,18 +24,17 @@ int main(int /* argc */, char * /* argv */ []) {
         bool broken = false;
         for (auto &outer_str : row) {
             int outer = std::stoi(outer_str);
-            std::cout << outer;
             for (auto &inner_str : row) {
                 int inner = std::stoi(inner_str);
-                std::cout << " " << inner << std::endl;
                 if (outer >= inner) {
                     continue;
                 }
                 if ((inner % outer) == 0) {
+                    auto val = inner / outer;
                     std::cout << "The multiples of row " << i << " are "
-                              << inner << " into " << outer << ", "
-                              << inner / outer << " times." << std::endl;
-                    multiples_checksum += inner / outer;
+                              << inner << " into " << outer << ", " << val
+                              << " times." << std::endl;
+                    multiples_checksum += val;
                     broken = true;
                     break;
                 }
