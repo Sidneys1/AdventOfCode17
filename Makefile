@@ -2,7 +2,7 @@ CXX=clang++
 CXX_ARGS=-std=c++14 -Wall -Wextra -Werror
 
 SOURCES:=$(shell find . -type f -name *.cpp)
-HEADERS:=$(shell find . -type f -name *.h)
+HEADERS:=$(shell find . -type f -name *.hpp)
 OUTS:=$(patsubst %.cpp,%.out,$(SOURCES))
 
 .PHONY: all clean tidy format

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "SpreadSheet.h"
+#include "SpreadSheet.hpp"
 
 int main(int /* argc */, char * /* argv */ []) {
     std::vector<SpreadSheetRow> rows;
