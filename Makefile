@@ -1,24 +1,21 @@
-CXX=clang++
-CXX_ARGS=-std=c++14 -Wall -Wextra -Werror
+CXX = clang++
+CXXFLAGS += -std=c++14 -Wall -Wextra -Werror -MD -MP
 
-SOURCES:=$(shell find . -type f -name *.cpp)
-HEADERS:=$(shell find . -type f -name *.hpp)
-OUTS:=$(patsubst %.cpp,%.out,$(SOURCES))
+SRC = $(wildcard ./*/*.cc)
+HEADERS = $(wildcard ./*/*.hpp)
+OUTS = $(SRC:%.cc=%.out)
 
-.PHONY: all clean tidy format
+.SECONDARY: $(SRC:%.cc=%.o)
+.PHONY: clean all tidy format
 
-all:  $(OUTS)
-	@echo Done.
+all: $(OUTS) ;
 
-%.out: %.cpp
-	@$(CXX) $(CXX_ARGS) -o $@ $^
-	@echo "\tBuilt $<"
+%.out: %.o ; $(CXX) -o $@ $^
 
-tidy:
-	@clang-tidy $(SOURCES) -- $(CXX_ARGS)
+tidy: ; @clang-tidy $(SRC) -- $(CXXFLAGS)
 
-format:
-	@clang-format -style=file -i $(SOURCES) $(HEADERS)
+format: ; @clang-format -style=file -i $(SRC) $(HEADERS)
 
-clean:
-	rm ./*/*.out
+clean: ; rm -f */*.out */*.o
+
+-include $(SRC:%.cc=%.d)
