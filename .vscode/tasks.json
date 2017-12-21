@@ -12,6 +12,18 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Format",
+            "type": "shell",
+            "command": "ubuntu run make format",
+            "problemMatcher": []
+        },
+        {
+            "label": "Tidy",
+            "type": "shell",
+            "command": "ubuntu run make tidy",
+            "problemMatcher": "$gcc"
         }
     ]
 }

@@ -47,7 +47,6 @@ int main(int /* argc */, char * /* argv */ []) {
 
     std::cout << "The root is " << it->first << std::endl;
     root = it->second;
-        
 
     for (auto program : registry) {
         for (const auto &program_name : program.second->children_names) {
